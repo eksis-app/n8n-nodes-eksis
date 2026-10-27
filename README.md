@@ -97,6 +97,7 @@ Things to know:
 - Each active workflow with this trigger takes one webhook endpoint from the limit of your workspace.
 - eksis only delivers to public `https` addresses. A self-hosted n8n on `localhost` cannot receive events until it is reachable over HTTPS, for example through a tunnel or a reverse proxy.
 - Every delivery is checked against its `webhook-signature` header. Requests without a valid signature, or older than five minutes, are answered with `401` and do not start the workflow.
+- The signing secret lives in the workflow. Do not rotate the secret of an endpoint that n8n created from the eksis settings page: deactivate and activate the workflow instead, and n8n registers a new endpoint with a fresh secret.
 
 ## Usage
 
