@@ -19,7 +19,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 The nodes use an eksis API key.
 
-1. Open your workspace on [eksis.io](https://eksis.io) and go to **Settings > API**.
+1. Open your workspace on [eksis.io](https://eksis.io) and choose **API & MCP** in the sidebar.
 2. Create a key. Its role sets what the key can do:
    - **Editor** is enough for posts, media, and comments.
    - **Admin** is needed for **Eksis Trigger**, because the trigger creates and removes webhook endpoints.

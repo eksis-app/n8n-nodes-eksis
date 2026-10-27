@@ -36,6 +36,11 @@ function matches(filter: string | undefined, ...values: unknown[]): boolean {
 	);
 }
 
+/** Some platforms already store the username with its `@`. */
+function handle(username: unknown): string {
+	return `@${String(username ?? '').replace(/^@/, '')}`;
+}
+
 function channelName(channel: IDataObject): string {
 	return `${channel.displayName || channel.username} (${platformLabel(channel.platform)})`;
 }
@@ -102,7 +107,7 @@ export async function searchComments(
 	);
 	return {
 		results: data.map((c) => ({
-			name: `${c.authorUsername ? `@${c.authorUsername}: ` : ''}${clip(c.text)}`,
+			name: `${c.authorUsername ? `${handle(c.authorUsername)}: ` : ''}${clip(c.text)}`,
 			value: String(c.id),
 		})),
 		paginationToken: nextCursor ?? undefined,
@@ -112,6 +117,6 @@ export async function searchComments(
 export async function getChannels(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 	const { data } = await fetchPage.call(this, '/channels');
 	return data
-		.map((c) => ({ name: channelName(c), value: String(c.id), description: `@${c.username}` }))
+		.map((c) => ({ name: channelName(c), value: String(c.id), description: handle(c.username) }))
 		.sort((a, b) => a.name.localeCompare(b.name));
 }

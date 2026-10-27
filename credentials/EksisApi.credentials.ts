@@ -24,7 +24,7 @@ export class EksisApi implements ICredentialType {
 			required: true,
 			default: '',
 			description:
-				'A key from Settings > API in your eksis workspace. It starts with eksis_sk_. The trigger node needs a key with the Admin role.',
+				'A key from the API & MCP page of your eksis workspace. It starts with eksis_sk_. The trigger node needs a key with the Admin role.',
 		},
 	];
 
